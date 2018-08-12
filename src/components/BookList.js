@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import BookDetails from './BookDetails';
-import { showBook } from '../actions'
+import { getBooks, getErrorMessage, getIsFetching } from '../reducers';
+import * as actions from '../actions';
 
 class BookList extends Component {
   constructor(props){
@@ -10,11 +11,21 @@ class BookList extends Component {
       selected: null
     }
   }
+
+  componentDidMount() {
+    this.fetchData();
+  }
+
+  fetchData () {
+    const { fetchBooks } = this.props;
+    fetchBooks();
+  }
+
   displayBooks = () => {
-      const { books } = this.props;
-      if (!books.length) {
+      const { books, isFetching } = this.props;
+      if (isFetching) {
         return (
-          <div>No book found</div>
+          <div>Loading</div>
         );
       }
       return books.map(book => {
@@ -43,11 +54,15 @@ class BookList extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  books: state.books
-});
+const mapStateToProps = (state) => {
+  return {
+    errorMessage: getErrorMessage(state),
+    isFetching: getIsFetching(state),
+    books: getBooks(state)
+  }
+}
 
 export default connect(
   mapStateToProps,
-  null
+  actions
 )(BookList);

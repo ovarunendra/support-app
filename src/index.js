@@ -1,9 +1,11 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { render } from 'react-dom';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
-import rootReducer from './reducers';
-const store = createStore(rootReducer)
+
+// Store
+import { configureStore } from './store'
+const store = configureStore()
+
 import './index.css';
 import App from './App';
 
@@ -15,7 +17,7 @@ const ReduxApp = () => {
 	);
 } 
 
-ReactDOM.render(
+render(
   <ReduxApp/>,
   document.getElementById('app')
 );
