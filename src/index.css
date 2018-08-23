@@ -3,6 +3,13 @@ body {
   font-family: "Arial";
 }
 
+span {
+  padding: 5px;
+}
+.error{
+  color: red;
+}
+
 #main h1{
   color: #444;
   text-align: center;
@@ -44,9 +51,10 @@ body {
   padding-right: 20px;
   margin-top: 5px;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 2fr 2fr 1fr;
   grid-gap: 10px;
 }
+
 .form label{
   text-align: right;
   padding: 6px;

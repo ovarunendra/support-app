@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
 import cache, { getBook } from './cache';
+import { reducer as reduxFormReducer } from 'redux-form';
 
 import {
   createList as createBookList,
@@ -13,6 +14,7 @@ import {
 // })
 
 export default combineReducers({
+  form: reduxFormReducer,
   cache,
   bookList: createBookList()
 })
