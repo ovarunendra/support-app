@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { reduxForm, Field, SubmissionError } from 'redux-form';
 import { connect } from 'react-redux';
 import { addBook } from '../actions';
+import analytics from '../utils/analytics';
 
 class AddBookForm extends Component {
   constructor(props) {
@@ -11,6 +12,7 @@ class AddBookForm extends Component {
     return this.props
       .addBook(data.name)
       .then(() => {
+        analytics.logNewBookAdded();
         this.props.reset();
       })
       .catch(() => {
