@@ -4,10 +4,10 @@ import { reducer as reduxFormReducer } from 'redux-form';
 
 import {
   createList as createBookList,
-  getIds as getIds,
+  getIds,
   getIsFetching as listIsFetching,
-  getErrorMessage as getErrorMessageForFilter
-} from './books'
+  getErrorMessage as getErrorMessageForFilter,
+} from './books';
 
 // const bookList = combineReducers({
 //   bookList: createBookList()
@@ -16,11 +16,13 @@ import {
 export default combineReducers({
   form: reduxFormReducer,
   cache,
-  bookList: createBookList()
-})
+  bookList: createBookList(),
+});
 
-export const getBooks = (state) => getIds(state.bookList).map(id =>  getBook(state, id));
+export const getBooks = state =>
+  getIds(state.bookList).map(id => getBook(state, id));
 
-export const getIsFetching = (state) => listIsFetching(state.bookList);
+export const getIsFetching = state => listIsFetching(state.bookList);
 
-export const getErrorMessage = (state) => getErrorMessageForFilter(state.bookList);
+export const getErrorMessage = state =>
+  getErrorMessageForFilter(state.bookList);

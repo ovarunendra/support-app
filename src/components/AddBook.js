@@ -18,7 +18,7 @@ class AddBookForm extends Component {
       .catch(() => {
         throw new SubmissionError({
           name: 'Book already exist',
-          _error: 'Adding new book failed!'
+          _error: 'Adding new book failed!',
         });
       });
   };
@@ -59,7 +59,7 @@ const createRenderer = render => ({ input, meta, label, ...rest }) => (
     className={[
       'field',
       meta.error && meta.touched ? 'error' : '',
-      meta.active ? 'active' : ''
+      meta.active ? 'active' : '',
     ].join(' ')}
   >
     <label>{label}</label>
@@ -75,14 +75,16 @@ const RenderInput = createRenderer((input, label) => (
 const AddBookReduxForm = reduxForm({
   form: 'addbook',
   destroyOnUnmount: true,
-  validate
+  validate,
 })(AddBookForm);
 
 const mapDispatchToProps = dispatch => ({
-  addBook: name => dispatch(addBook(name))
+  addBook: name => dispatch(addBook(name)),
 });
 
 export default connect(
   null,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(AddBookReduxForm);
+
+export { AddBookForm };

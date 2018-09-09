@@ -3,8 +3,8 @@ import React, { Component } from 'react';
 class BookDetails extends Component {
   displayBookDetails() {
     const { book } = this.props;
-    if(!book){
-      return <div>No Book Selected</div>
+    if (!book) {
+      return <div className="no-book">No Book Selected</div>;
     }
     return (
       <div>
@@ -14,11 +14,7 @@ class BookDetails extends Component {
     );
   }
   render() {
-    return (
-      <div id="book-details">
-        {this.displayBookDetails()}
-      </div>
-    );
+    return <div id="book-details">{this.displayBookDetails()}</div>;
   }
 }
 

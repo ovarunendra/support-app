@@ -9,7 +9,7 @@ class BookList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selected: null
+      selected: null,
     };
   }
 
@@ -26,7 +26,7 @@ class BookList extends Component {
   displayBooks = () => {
     const { books, isFetching } = this.props;
     if (isFetching) {
-      return <div>Loading</div>;
+      return <div className="loading">Loading</div>;
     }
     return books.map(book => {
       return (
@@ -58,11 +58,11 @@ const mapStateToProps = state => {
   return {
     errorMessage: getErrorMessage(state),
     isFetching: getIsFetching(state),
-    books: getBooks(state)
+    books: getBooks(state),
   };
 };
 
 export default connect(
   mapStateToProps,
-  actions
+  actions,
 )(BookList);
